@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">userInput</string>
     <string name="label_namadepan">Nama Depan</string>
+    <string name="label_namabelakang">Nama Belakang</string>
 </resources>
