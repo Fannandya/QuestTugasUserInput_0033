@@ -3,4 +3,5 @@
     <string name="label_namadepan">Nama Depan</string>
     <string name="label_namabelakang">Nama Belakang</string>
     <string name="label_email">Email</string>
+    <string name="label_tanggallahir">Tanggal Lahir</string>
 </resources>
