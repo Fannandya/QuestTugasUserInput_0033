@@ -1,9 +1,18 @@
 package com.mamay.userinput
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 
 @Composable
 fun Biodata(
     modifier: Modifier
-){}
+){
+    // variable untuk menyimpan data input dari user
+    var textNamaDepan by remember { mutableStateOf("") }
+
+}
+
