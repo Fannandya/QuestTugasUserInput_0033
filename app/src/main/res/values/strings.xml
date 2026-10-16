@@ -2,6 +2,7 @@
     <string name="app_name">userInput</string>
     <string name="greeting">Form Biodata</string>
     <string name="button_submit">Submit</string>
+    <string name="subheader">Silahkan lengkapi biodata anda</string>
     <string name="label_namadepan">Nama Depan</string>
     <string name="label_namabelakang">Nama Belakang</string>
     <string name="label_email">Email</string>
