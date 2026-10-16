@@ -4,4 +4,5 @@
     <string name="label_namabelakang">Nama Belakang</string>
     <string name="label_email">Email</string>
     <string name="label_tanggallahir">Tanggal Lahir</string>
+    <string name="label_pengalaman">Pengalaman</string>
 </resources>
