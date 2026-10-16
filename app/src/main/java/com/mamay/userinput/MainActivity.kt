@@ -1,5 +1,6 @@
 package com.mamay.userinput
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,14 +15,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mamay.userinput.ui.theme.UserInputTheme
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             UserInputTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize()) {
                     Biodata(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier
                     )
                 }
             }
