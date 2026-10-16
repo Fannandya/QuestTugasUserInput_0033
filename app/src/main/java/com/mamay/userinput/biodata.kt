@@ -20,5 +20,6 @@ fun Biodata(
 
     // variable untuk pengganti db
     var namaDepan by remember { mutableStateOf("") }
+    var namaBelakang by remember { mutableStateOf("") }
 }
 
