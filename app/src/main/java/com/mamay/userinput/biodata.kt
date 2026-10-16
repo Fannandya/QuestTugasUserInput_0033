@@ -17,5 +17,8 @@ fun Biodata(
     var textEmail by remember { mutableStateOf("") }
     var textTanggalLahir by remember { mutableStateOf("") }
     var textPengalaman by remember { mutableStateOf("") }
+
+    // variable untuk pengganti db
+    var namaDepan by remember { mutableStateOf("") }
 }
 
