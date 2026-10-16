@@ -18,6 +18,7 @@ fun Biodata(
     var textTanggalLahir by remember { mutableStateOf("") }
     var textPengalaman by remember { mutableStateOf("") }
 
+
     // variable untuk pengganti db
     var namaDepan by remember { mutableStateOf("") }
     var namaBelakang by remember { mutableStateOf("") }
@@ -27,6 +28,6 @@ fun Biodata(
 
     // membuat list pengalaman dan skill
     val listPengalaman: List<String> = listOf("< 1tahun", "1-2 tahun", "3-5 tahun", "5-10 tahun", "> 10 tahun")
-
+    val listSkill: List<String> = listOf("UI/UX", "Programming", "Networking")
 }
 
