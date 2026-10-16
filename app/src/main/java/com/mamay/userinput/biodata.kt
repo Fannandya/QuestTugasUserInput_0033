@@ -25,6 +25,7 @@ fun Biodata(
     var email by remember { mutableStateOf("") }
     var tanggalLahir by remember { mutableStateOf("") }
     var pengalaman by remember { mutableStateOf("") }
+    var skill by remember { mutableStateOf("") }
 
     // membuat list pengalaman dan skill
     val listPengalaman: List<String> = listOf("< 1tahun", "1-2 tahun", "3-5 tahun", "5-10 tahun", "> 10 tahun")
