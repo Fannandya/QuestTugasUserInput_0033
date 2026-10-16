@@ -23,5 +23,6 @@ fun Biodata(
     var namaBelakang by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var tanggalLahir by remember { mutableStateOf("") }
+    var pengalaman by remember { mutableStateOf("") }
 }
 
