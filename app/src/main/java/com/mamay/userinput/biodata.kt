@@ -2,6 +2,7 @@ package com.mamay.userinput
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,9 +15,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,50 +41,30 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 @Composable
 fun Biodata(
     modifier: Modifier = Modifier
 ) {
     // variable untuk menyimpan data input dari user
-    var textNamaDepan by remember {
-        mutableStateOf("")
-    }
-    var textNamaBelakang by remember {
-        mutableStateOf("")
-    }
-    var textEmail by remember {
-        mutableStateOf("")
-    }
-    var textTanggalLahir by remember {
-        mutableStateOf("")
-    }
-    var textPengalaman by remember {
-        mutableStateOf("")
-    }
-    var textSkill by remember {
-        mutableStateOf("")
-    }
+    var textNamaDepan by remember { mutableStateOf("") }
+    var textNamaBelakang by remember { mutableStateOf("") }
+    var textEmail by remember { mutableStateOf("") }
+    var textTanggalLahir by remember { mutableStateOf("") }
+    var textPengalaman by remember { mutableStateOf("") }
+    var textSkill by remember { mutableStateOf("") }
 
     // variable untuk menyimpan data dari komponen UI
-    var namaDepan by remember {
-        mutableStateOf("")
-    }
-    var namaBelakang by remember {
-        mutableStateOf("")
-    }
-    var email by remember {
-        mutableStateOf("")
-    }
-    var tanggalLahir by remember {
-        mutableStateOf("")
-    }
-    var pengalaman by remember {
-        mutableStateOf("")
-    }
-    var skill by remember {
-        mutableStateOf("")
-    }
+    var namaDepan by remember { mutableStateOf("") }
+    var namaBelakang by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var tanggalLahir by remember { mutableStateOf("") }
+    var pengalaman by remember { mutableStateOf("") }
+    var skill by remember { mutableStateOf("") }
     val listPengalaman = listOf(
         "< 1 tahun",
         "1-2 tahun",
@@ -89,6 +77,8 @@ fun Biodata(
         "Programming",
         "Networking"
     )
+    val datePickerState = rememberDatePickerState()
+    var isDatePickerOpen by remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier
@@ -150,15 +140,16 @@ fun Biodata(
                 ) {
                     Text(
                         text = stringResource(id = R.string.greeting),
-                        fontSize = 24.sp,
+                        fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.DarkGray
+                        color = colorResource(id = R.color.black)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = stringResource(id = R.string.subheader),
-                        fontSize = 14.sp,
-                        color = Color.Gray
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorResource(id = R.color.black)
                     )
                     Spacer(modifier = Modifier.height(24.dp))
 
@@ -196,10 +187,63 @@ fun Biodata(
                                 .fillMaxWidth()
                         )
                     }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Box(modifier = Modifier.weight(1f)) {
+                            OutlinedTextField(
+                                value = textTanggalLahir,
+                                onValueChange = {},
+                                label = { Text(stringResource(id = R.string.label_tanggallahir), fontSize = 12.sp) },
+                                trailingIcon = {
+                                    Icon(Icons.Default.DateRange, contentDescription = "Kalender")
+                                },
+                                readOnly = true,
+                                modifier = Modifier.fillMaxWidth(),
+                                singleLine = true
+                            )
+                            Spacer(
+                                modifier = Modifier
+                                    .matchParentSize()
+                                    .clickable(onClickLabel = "Pilih tanggal lahir") {
+                                        isDatePickerOpen = true
+                                    }
+                            )
+                        }
+                    }
+                    if (isDatePickerOpen) {
+                        DatePickerDialog(
+                            onDismissRequest = { isDatePickerOpen = false },
+                            confirmButton = {
+                                TextButton(onClick = {
+                                    datePickerState.selectedDateMillis?.let { millis ->
+                                        textTanggalLahir = SimpleDateFormat(
+                                            "dd/MM/yyyy",
+                                            Locale.getDefault()
+                                        ).apply {
+                                            timeZone = TimeZone.getTimeZone("UTC")
+                                        }.format(Date(millis))
+                                    }
+                                    isDatePickerOpen = false
+                                }) {
+                                    Text("OK")
+                                }
+                            },
+                            dismissButton = {
+                                TextButton(onClick = { isDatePickerOpen = false }) {
+                                    Text("Cancel")
+                                }
+                            }
+                        ) {
+                            DatePicker(state = datePickerState)
+                        }
+                    }
+
+                    }
                 }
 
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
         }
-    }
