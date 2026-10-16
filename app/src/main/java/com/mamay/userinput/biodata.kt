@@ -13,6 +13,8 @@ fun Biodata(
 ){
     // variable untuk menyimpan data input dari user
     var textNamaDepan by remember { mutableStateOf("") }
+    var textNamaBelakang by remember { mutableStateOf("") }
+
 
 }
 
