@@ -48,6 +48,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -308,14 +309,14 @@ fun Biodata(
                         Button(
                             modifier = Modifier
                                 .fillMaxWidth(),
-                            enabled = textEmail.isNotEmpty() && textTanggalLahir.isNotEmpty() && textNamaDepan.isNotEmpty() && textNamaBelakang.isNotEmpty(),
+                            enabled = textEmail.isNotEmpty() && textTanggalLahir.isNotEmpty() && textNamaDepan.isNotEmpty() && textNamaBelakang.isNotEmpty() && textPengalaman.isNotEmpty(),
                             onClick = {
-                                namaDepan = textNamaDepan
-                                namaBelakang = textNamaBelakang
-                                email = textEmail
-                                tanggalLahir = textTanggalLahir
-                                pengalaman = textPengalaman
-                                skill = textSkill
+                                scope.launch {
+                                    snackbarHostState.showSnackbar(
+                                        message = "Data berhasil disimpan",
+                                        withDismissAction = true
+                                    )
+                                }
                             },
 
                         ) {
