@@ -253,33 +253,43 @@ fun Biodata(
                             DatePicker(state = datePickerState)
                         }
                     }
-                    Text(
-                        text = stringResource(id = R.string.label_skill),
-                        fontSize = 12.sp,
+                    Column(
                         modifier = Modifier
-                            .padding(top = 10.dp),
-                        textAlign = TextAlign.Left
-                    )
-                    Row {
-                        listSkill.forEach { item ->
-                            Row(
-                                modifier = Modifier
-                                    .selectable(
-                                        selected = textSkill == item,
-                                        onClick = { textSkill = item}
-                                    ),
-                            ) {
-                                Checkbox(
-                                    checked = textSkill == item,
-                                    onCheckedChange = { textSkill = item}
-                                )
-                                Text(
-                                    text = item,
-                                    fontSize = 12.sp
-                                )
-                            }
-                    }
+                            .fillMaxWidth()
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.label_skill),
+                            fontSize = 20.sp,
+                            modifier = Modifier
+                                .padding(top = dimensionResource(id = R.dimen.padding_20), bottom = dimensionResource(id = R.dimen.padding_20)),
+                        )
 
+                        Row {
+                            listSkill.forEach { item ->
+                                Row(
+                                    modifier = Modifier
+                                        //.padding(all = dimensionResource(id = R.dimen.padding_10))
+                                        .weight(1f)
+                                        .selectable(
+                                            selected = textSkill == item,
+                                            onClick = { textSkill = item}
+                                        ),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Checkbox(
+                                        checked = textSkill == item,
+                                        onCheckedChange = { textSkill = item}
+                                    )
+                                    Text(
+                                        text = item,
+                                        fontSize = 10.sp,
+                                        fontWeight = FontWeight.Black,
+                                        modifier = Modifier,
+                                        textAlign = TextAlign.Left,
+                                    )
+                                }
+                            }
+                        }
                     }
                     Column(
                         modifier = Modifier
