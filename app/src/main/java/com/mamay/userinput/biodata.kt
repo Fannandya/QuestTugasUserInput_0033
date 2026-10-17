@@ -109,6 +109,9 @@ fun Biodata(
     // vallidasi field email
     val isEmailError = textEmail.isNotEmpty() && !textEmail.contains("@")
 
+    // variable untuk list kosong
+    val skillempty = stringResource(id = R.string.list_kosong)
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -368,6 +371,7 @@ fun Biodata(
                                 email = textEmail
                                 tanggalLahir = textTanggalLahir
                                 pengalaman = textPengalaman
+                                skill = if (textSkill.isEmpty()) skillempty else textSkill
                                 scope.launch {
                                     val skillList = if (textSkill.isEmpty()){
                                         "Belum memilih skill"
