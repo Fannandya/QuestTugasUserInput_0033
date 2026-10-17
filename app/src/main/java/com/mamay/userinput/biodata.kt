@@ -335,13 +335,17 @@ fun Biodata(
                                         .weight(1f)
                                         .selectable(
                                             selected = textSkill == item,
-                                            onClick = { textSkill = item}
+                                            // Pada Row selectable: bisa uncheck kalo skill yang sama diklik lagi
+                                            onClick = { textSkill = if (textSkill == item) "" else item }
                                         ),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Checkbox(
                                         checked = textSkill == item,
-                                        onCheckedChange = { textSkill = item}
+                                        // Pada Checkbox: mengatur pemilihan skill atau batalkan (uncheck)
+                                        onCheckedChange = { isChecked ->
+                                            textSkill = if (isChecked) item else ""
+                                        }
                                     )
                                     Text(
                                         text = item,
