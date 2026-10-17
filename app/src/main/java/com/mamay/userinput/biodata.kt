@@ -92,6 +92,7 @@ fun Biodata(
     // variable untuk menampilkan snackbar
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    val snackbarActionLabel = stringResource(id = R.string.OK)
 
     Box(
         modifier = modifier
@@ -326,7 +327,8 @@ fun Biodata(
                                         Skill: $skillList
                                     """.trimIndent()
                                     snackbarHostState.showSnackbar(
-                                        message = "Data berhasil disimpan",
+                                        message = infoBiodata,
+                                        actionLabel = snackbarActionLabel,
                                         withDismissAction = true
                                     )
                                 }
