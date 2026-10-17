@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -168,7 +169,7 @@ fun Biodata(
                             modifier = Modifier
                                 .weight(1f)
                         )
-                        Spacer(modifier = Modifier.width(12.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
                         OutlinedTextField(
                             value = textNamaBelakang,
                             onValueChange = { textNamaBelakang = it },
@@ -181,7 +182,9 @@ fun Biodata(
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 10.dp),
+                            .padding(
+                                top = dimensionResource(id = R.dimen.padding_10),
+                                bottom = dimensionResource(id = R.dimen.padding_10)),
                     ) {
                         OutlinedTextField(
                             value = textEmail,
@@ -210,11 +213,12 @@ fun Biodata(
                             Spacer(
                                 modifier = Modifier
                                     .matchParentSize()
-                                    .clickable(onClickLabel = "Pilih tanggal lahir") {
+                                    .clickable(onClickLabel = stringResource(id = R.string.label_tanggallahir)) {
                                         isDatePickerOpen = true
                                     }
                             )
                         }
+                        Spacer(modifier = Modifier.width(10.dp))
                         OutlinedTextField(
                             value = textPengalaman,
                             onValueChange = { textPengalaman = it },
@@ -237,12 +241,12 @@ fun Biodata(
                                     }
                                     isDatePickerOpen = false
                                 }) {
-                                    Text("OK")
+                                    Text(stringResource(id = R.string.OK))
                                 }
                             },
                             dismissButton = {
                                 TextButton(onClick = { isDatePickerOpen = false }) {
-                                    Text("Cancel")
+                                    Text(stringResource(id = R.string.Cancel))
                                 }
                             }
                         ) {
@@ -260,12 +264,10 @@ fun Biodata(
                         listSkill.forEach { item ->
                             Row(
                                 modifier = Modifier
-                                    .fillMaxWidth()
                                     .selectable(
                                         selected = textSkill == item,
                                         onClick = { textSkill = item}
                                     ),
-                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Checkbox(
                                     checked = textSkill == item,
@@ -299,7 +301,12 @@ fun Biodata(
                                 skill = textSkill
                             },
 
-                        ) { }
+                        ) {
+                            Text(stringResource(id = R.string.button_submit),
+                                color = Color.Black
+
+                            )
+                        }
                     }
 
                 }
