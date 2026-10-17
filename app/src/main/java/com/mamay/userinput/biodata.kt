@@ -94,6 +94,9 @@ fun Biodata(
     val scope = rememberCoroutineScope()
     val snackbarActionLabel = stringResource(id = R.string.OK)
 
+    // membuat state untuk mengatur buka/tutup dropdown
+    var isExpDropdownExpanded by remember { mutableStateOf(false) }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -333,7 +336,6 @@ fun Biodata(
                                     )
                                 }
                             },
-
                         ) {
                             Text(stringResource(id = R.string.button_submit),
                                 color = Color.Black
