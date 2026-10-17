@@ -363,6 +363,11 @@ fun Biodata(
                                 .fillMaxWidth(),
                             enabled = textEmail.isNotEmpty() && textTanggalLahir.isNotEmpty() && textNamaDepan.isNotEmpty() && textNamaBelakang.isNotEmpty() && textPengalaman.isNotEmpty(),
                             onClick = {
+                                namaDepan = textNamaDepan
+                                namaBelakang = textNamaBelakang
+                                email = textEmail
+                                tanggalLahir = textTanggalLahir
+                                pengalaman = textPengalaman
                                 scope.launch {
                                     val skillList = if (textSkill.isEmpty()){
                                         "Belum memilih skill"
