@@ -312,6 +312,19 @@ fun Biodata(
                             enabled = textEmail.isNotEmpty() && textTanggalLahir.isNotEmpty() && textNamaDepan.isNotEmpty() && textNamaBelakang.isNotEmpty() && textPengalaman.isNotEmpty(),
                             onClick = {
                                 scope.launch {
+                                    val skillList = if (textSkill.isEmpty()){
+                                        "Belum memilih skill"
+                                    } else{
+                                        textSkill
+                                    }
+                                    val infoBiodata = """ 
+                                        Nama Depan: $textNamaDepan
+                                        Nama Belakang: $textNamaBelakang
+                                        Email: $textEmail
+                                        Tanggal Lahir: $textTanggalLahir
+                                        Pengalaman: $textPengalaman
+                                        Skill: $skillList
+                                    """.trimIndent()
                                     snackbarHostState.showSnackbar(
                                         message = "Data berhasil disimpan",
                                         withDismissAction = true
