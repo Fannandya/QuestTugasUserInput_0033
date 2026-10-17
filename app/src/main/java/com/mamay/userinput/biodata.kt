@@ -28,6 +28,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -231,12 +236,37 @@ fun Biodata(
                             )
                         }
                         Spacer(modifier = Modifier.width(10.dp))
-                        OutlinedTextField(
-                            value = textPengalaman,
-                            onValueChange = { textPengalaman = it },
-                            label = { Text(stringResource(id = R.string.label_pengalaman), fontSize = 12.sp) },
+
+                        ExposedDropdownMenuBox(
+                            expanded = isExpDropdownExpanded,
+                            onExpandedChange = { isExpDropdownExpanded = !isExpDropdownExpanded },
                             modifier = Modifier.weight(1f)
-                        )
+                        ) {
+                            OutlinedTextField(
+                                value = textPengalaman,
+                                onValueChange = { textPengalaman = it },
+                                readOnly = true, //agar tidak bisa diketik manual
+                                label = { Text(stringResource(id = R.string.label_pengalaman), fontSize = 12.sp) },
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpDropdownExpanded)},
+                                modifier = Modifier
+                                    .menuAnchor() // untuk menghubungkan dibawah text field
+                            )
+                            ExposedDropdownMenu(
+                                expanded = isExpDropdownExpanded,
+                                onDismissRequest = { isExpDropdownExpanded = false }
+                            ){
+                                listPengalaman.forEach { exp ->
+                                    DropdownMenuItem(
+                                        text = {Text(exp)},
+                                        onClick = {
+                                            textPengalaman = exp
+                                            isExpDropdownExpanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
                     }
                     if (isDatePickerOpen) {
                         DatePickerDialog(
