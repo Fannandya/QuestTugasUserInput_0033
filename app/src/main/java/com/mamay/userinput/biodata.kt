@@ -33,6 +33,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,6 +59,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -212,7 +214,18 @@ fun Biodata(
                             onValueChange = { textEmail = it },
                             label = { Text(text = stringResource(id = R.string.label_email)) },
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .fillMaxWidth(),
+                            singleLine = true,
+                            isError = isEmailError, // mengubah garis luar dan label menjadi warna merah ketika error
+                            supportingText = {
+                                if (isEmailError){
+                                    Text(
+                                        text = stringResource(id = R.string.validasi_email),
+                                        color = MaterialTheme.colorScheme.error,
+                                        fontSize = 12.sp
+                                    )
+                                }
+                            }
                         )
                     }
                     Row(

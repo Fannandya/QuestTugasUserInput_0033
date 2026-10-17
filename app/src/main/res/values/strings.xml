@@ -12,4 +12,5 @@
     <string name="OK">Ok</string>
     <string name="Cancel">Cancel</string>
     <string name="list_kosong">Belum memilih skill</string>
+    <string name="validasi_email">Email tidak valid</string>
 </resources>
