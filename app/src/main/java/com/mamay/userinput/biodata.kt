@@ -103,6 +103,9 @@ fun Biodata(
     // membuat state untuk mengatur buka/tutup dropdown
     var isExpDropdownExpanded by remember { mutableStateOf(false) }
 
+    // vallidasi field email
+    val isEmailError = textEmail.isNotEmpty() && !textEmail.contains("@")
+
     Box(
         modifier = modifier
             .fillMaxSize()
