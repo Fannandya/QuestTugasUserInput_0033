@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DatePicker
@@ -25,6 +26,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +42,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.text.SimpleDateFormat
@@ -194,7 +198,7 @@ fun Biodata(
                         Box(modifier = Modifier.weight(1f)) {
                             OutlinedTextField(
                                 value = textTanggalLahir,
-                                onValueChange = {},
+                                onValueChange = {textTanggalLahir = it},
                                 label = { Text(stringResource(id = R.string.label_tanggallahir), fontSize = 12.sp) },
                                 trailingIcon = {
                                     Icon(Icons.Default.DateRange, contentDescription = "Kalender")
@@ -211,6 +215,12 @@ fun Biodata(
                                     }
                             )
                         }
+                        OutlinedTextField(
+                            value = textPengalaman,
+                            onValueChange = { textPengalaman = it },
+                            label = { Text(stringResource(id = R.string.label_pengalaman), fontSize = 12.sp) },
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                     if (isDatePickerOpen) {
                         DatePickerDialog(
@@ -239,11 +249,63 @@ fun Biodata(
                             DatePicker(state = datePickerState)
                         }
                     }
+                    Text(
+                        text = stringResource(id = R.string.label_skill),
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .padding(top = 10.dp),
+                        textAlign = TextAlign.Left
+                    )
+                    Row {
+                        listSkill.forEach { item ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .selectable(
+                                        selected = textSkill == item,
+                                        onClick = { textSkill = item}
+                                    ),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Checkbox(
+                                    checked = textSkill == item,
+                                    onCheckedChange = { textSkill = item}
+                                )
+                                Text(
+                                    text = item,
+                                    fontSize = 12.sp
+                                )
+                            }
+                    }
 
                     }
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            enabled = textEmail.isNotEmpty() && textTanggalLahir.isNotEmpty() && textNamaDepan.isNotEmpty() && textNamaBelakang.isNotEmpty(),
+                            onClick = {
+                                namaDepan = textNamaDepan
+                                namaBelakang = textNamaBelakang
+                                email = textEmail
+                                tanggalLahir = textTanggalLahir
+                                pengalaman = textPengalaman
+                                skill = textSkill
+                            },
+
+                        ) { }
+                    }
+
                 }
 
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
         }
+}
