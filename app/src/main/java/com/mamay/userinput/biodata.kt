@@ -366,14 +366,14 @@ fun Biodata(
                                     val skillList = if (textSkill.isEmpty()){
                                         "Belum memilih skill"
                                     } else{
-                                        textSkill
+                                        skill
                                     }
                                     val infoBiodata = """ 
-                                        Nama Depan: $textNamaDepan
-                                        Nama Belakang: $textNamaBelakang
-                                        Email: $textEmail
-                                        Tanggal Lahir: $textTanggalLahir
-                                        Pengalaman: $textPengalaman
+                                        Nama Depan: $namaDepan
+                                        Nama Belakang: $namaBelakang
+                                        Email: $email
+                                        Tanggal Lahir: $tanggalLahir
+                                        Pengalaman: $pengalaman
                                         Skill: $skillList
                                     """.trimIndent()
                                     snackbarHostState.showSnackbar(
