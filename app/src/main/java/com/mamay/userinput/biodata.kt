@@ -397,5 +397,11 @@ fun Biodata(
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 16.dp)
+        )
         }
 }
